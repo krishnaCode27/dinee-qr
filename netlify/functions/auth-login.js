@@ -3,8 +3,8 @@
  * Route: POST /.netlify/functions/auth-login (or /api/auth-login)
  *
  * Provides secure administrator authentication running server-side in Node.js.
- * Credentials and secrets are read from server environment variables and never
- * exposed in the client-side JavaScript bundle.
+ * Credentials and secrets are strictly read from server environment variables
+ * and never exposed to client-side bundles or public repositories.
  */
 
 import crypto from "crypto";
@@ -13,7 +13,19 @@ import crypto from "crypto";
 const rateLimitMap = new Map();
 const MAX_ATTEMPTS = 5;
 const LOCKOUT_MS = 15 * 60 * 1000; // 15 minutes lockout
-const WINDOW_MS = 15 * 60 * 1000;  // 15 minutes window
+const WINDOW_MS = 15 * 60 * 1000;  // 15 minutes tracking window
+
+// Ephemeral runtime session fallback secret generated at cold start if not configured
+let runtimeEphemeralSecret = null;
+function getSessionSecret() {
+  if (process.env.SESSION_SECRET && process.env.SESSION_SECRET.trim().length >= 32) {
+    return process.env.SESSION_SECRET.trim();
+  }
+  if (!runtimeEphemeralSecret) {
+    runtimeEphemeralSecret = crypto.randomBytes(64).toString("hex");
+  }
+  return runtimeEphemeralSecret;
+}
 
 function getClientIp(event) {
   const headers = event.headers || {};
@@ -32,7 +44,7 @@ function checkRateLimit(ip) {
   if (record) {
     if (record.lockUntil && record.lockUntil > now) {
       const waitMinutes = Math.ceil((record.lockUntil - now) / 60000);
-      return { allowed: false, error: `Too many failed login attempts. Account locked. Please try again in ${waitMinutes} minutes.` };
+      return { allowed: false, error: `Too many failed login attempts. Account temporarily locked. Please try again in ${waitMinutes} minutes.` };
     }
     if (now > record.resetAt) {
       rateLimitMap.delete(ip);
@@ -68,12 +80,62 @@ function createSessionToken(payload, secret) {
   return `${header}.${body}.${signature}`;
 }
 
+// Timing-attack proof constant-time comparison helper
+function verifyPassword(enteredPassword, configuredSecret) {
+  if (!enteredPassword || !configuredSecret) return false;
+
+  // Support PBKDF2 hashed password format: pbkdf2:<saltHex>:<iterations>:<hashHex>
+  if (typeof configuredSecret === "string" && configuredSecret.startsWith("pbkdf2:")) {
+    const parts = configuredSecret.split(":");
+    if (parts.length === 4) {
+      try {
+        const [, saltHex, iterationsStr, hashHex] = parts;
+        const iterations = parseInt(iterationsStr, 10) || 100000;
+        const salt = Buffer.from(saltHex, "hex");
+        const expectedBuf = Buffer.from(hashHex, "hex");
+        const derivedBuf = crypto.pbkdf2Sync(enteredPassword, salt, iterations, expectedBuf.length, "sha512");
+        return crypto.timingSafeEqual(derivedBuf, expectedBuf);
+      } catch {
+        return false;
+      }
+    }
+  }
+
+  // Direct constant-time string comparison via SHA-256 fixed-length digests
+  try {
+    const enteredHash = crypto.createHash("sha256").update(String(enteredPassword)).digest();
+    const expectedHash = crypto.createHash("sha256").update(String(configuredSecret)).digest();
+    return crypto.timingSafeEqual(enteredHash, expectedHash);
+  } catch {
+    return false;
+  }
+}
+
+function verifyUsername(enteredUsername, configuredUsername) {
+  if (!enteredUsername || !configuredUsername) return false;
+  try {
+    const enteredHash = crypto.createHash("sha256").update(String(enteredUsername).trim().toLowerCase()).digest();
+    const expectedHash = crypto.createHash("sha256").update(String(configuredUsername).trim().toLowerCase()).digest();
+    return crypto.timingSafeEqual(enteredHash, expectedHash);
+  } catch {
+    return false;
+  }
+}
+
 export const handler = async (event) => {
+  const securityHeaders = {
+    "Content-Type": "application/json",
+    "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate",
+    "Pragma": "no-cache",
+    "X-Content-Type-Options": "nosniff",
+    "X-Frame-Options": "DENY"
+  };
+
   // Only accept POST
   if (event.httpMethod !== "POST") {
     return {
       statusCode: 405,
-      headers: { "Content-Type": "application/json", Allow: "POST" },
+      headers: { ...securityHeaders, Allow: "POST" },
       body: JSON.stringify({ error: "Method Not Allowed" })
     };
   }
@@ -84,7 +146,7 @@ export const handler = async (event) => {
     return {
       statusCode: 429,
       headers: {
-        "Content-Type": "application/json",
+        ...securityHeaders,
         "Retry-After": "900"
       },
       body: JSON.stringify({ error: rateLimitStatus.error })
@@ -97,7 +159,7 @@ export const handler = async (event) => {
   } catch {
     return {
       statusCode: 400,
-      headers: { "Content-Type": "application/json" },
+      headers: securityHeaders,
       body: JSON.stringify({ error: "Invalid JSON request body." })
     };
   }
@@ -106,51 +168,45 @@ export const handler = async (event) => {
   if (!username || !password || typeof username !== "string" || typeof password !== "string") {
     return {
       statusCode: 400,
-      headers: { "Content-Type": "application/json" },
+      headers: securityHeaders,
       body: JSON.stringify({ error: "Username and password are required." })
     };
   }
 
-  // Read server-side credentials from Netlify environment variables
-  const validAdminUser = process.env.ADMIN_USERNAME || "admin";
-  const validAdminPassword = process.env.ADMIN_PASSWORD || "admin123Krishna";
-  const sessionSecret = process.env.SESSION_SECRET || "dineeqr_secure_blackcardinal_hmac_secret_2026_prod";
+  // Strict enforcement: Credentials must be configured in server environment variables
+  const configuredAdminUser = (process.env.ADMIN_USERNAME && process.env.ADMIN_USERNAME !== "undefined") ? process.env.ADMIN_USERNAME : "admin";
+  const rawHash = process.env.ADMIN_PASSWORD_HASH;
+  const rawPass = process.env.ADMIN_PASSWORD;
+  const configuredAdminPassword = (rawHash && rawHash !== "undefined") ? rawHash : ((rawPass && rawPass !== "undefined") ? rawPass : null);
 
-  const isUserMatch = username.trim().toLowerCase() === validAdminUser.toLowerCase();
-
-  // Accept primary password, plus known admin passwords to prevent lockout
-  const acceptedPasswords = [
-    validAdminPassword,
-    "admin123Krishna",
-    "admin@dineeqr12345",
-    "admin123",
-    "admin"
-  ];
-
-  let isPasswordMatch = acceptedPasswords.some(validPass => {
-    try {
-      const enteredBuf = Buffer.from(password);
-      const validBuf = Buffer.from(validPass);
-      return enteredBuf.length === validBuf.length && crypto.timingSafeEqual(enteredBuf, validBuf);
-    } catch {
-      return password === validPass;
-    }
-  });
-
-  if (!isUserMatch || !isPasswordMatch) {
-    recordAttempt(clientIp, false);
+  if (!configuredAdminPassword) {
     return {
-      statusCode: 401,
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ error: "Invalid credentials. Please verify your username and password." })
+      statusCode: 500,
+      headers: securityHeaders,
+      body: JSON.stringify({
+        error: "Server authentication error: ADMIN_PASSWORD is not configured in server environment variables."
+      })
     };
   }
 
-  // Successful authentication
+  const isUserValid = verifyUsername(username, configuredAdminUser);
+  const isPasswordValid = verifyPassword(password, configuredAdminPassword);
+
+  if (!isUserValid || !isPasswordValid) {
+    recordAttempt(clientIp, false);
+    return {
+      statusCode: 401,
+      headers: securityHeaders,
+      body: JSON.stringify({ error: "Invalid administrator credentials. Please check your username and password." })
+    };
+  }
+
+  // Successful authentication: Reset failed attempt count
   recordAttempt(clientIp, true);
 
-  // 8-hour session expiration
-  const sessionDurationSec = 8 * 60 * 60;
+  // Configurable session expiration duration (Default: 8 hours)
+  const hours = Math.max(1, Math.min(72, parseInt(process.env.SESSION_EXPIRY_HOURS, 10) || 8));
+  const sessionDurationSec = hours * 60 * 60;
   const nowSec = Math.floor(Date.now() / 1000);
   const expSec = nowSec + sessionDurationSec;
 
@@ -161,20 +217,18 @@ export const handler = async (event) => {
     exp: expSec
   };
 
-  const token = createSessionToken(payload, sessionSecret);
+  const secret = getSessionSecret();
+  const token = createSessionToken(payload, secret);
 
   return {
     statusCode: 200,
-    headers: {
-      "Content-Type": "application/json",
-      "Cache-Control": "no-store, no-cache, must-revalidate"
-    },
+    headers: securityHeaders,
     body: JSON.stringify({
       success: true,
       token,
       expiresAt: expSec * 1000,
       user: {
-        username: validAdminUser,
+        username: configuredAdminUser,
         role: "admin"
       }
     })

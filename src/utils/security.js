@@ -14,15 +14,25 @@ export function sanitizeUrl(url) {
   const trimmed = url.trim();
   if (!trimmed) return "";
 
+  // Prohibit backslashes, control chars, and null bytes (defends against CVE-2025-68470 open redirects)
+  if (/[\u0000\\%5c]/i.test(trimmed)) {
+    return "";
+  }
+
   // Prohibit pseudo-protocols and script injections
-  if (/^(javascript|vbscript|data|file):/i.test(trimmed)) {
-    console.warn("Blocked potentially malicious URL scheme:", trimmed);
+  if (/^(javascript|vbscript|data|file|blob):/i.test(trimmed)) {
     return "";
   }
 
   try {
-    // If it is a relative URL starting with / or #, allow it
-    if (trimmed.startsWith("/") || trimmed.startsWith("#")) {
+    // Relative URLs: Must start with single / followed by path, or # (reject protocol-relative //)
+    if (trimmed.startsWith("#")) {
+      return trimmed;
+    }
+    if (trimmed.startsWith("/")) {
+      if (trimmed.startsWith("//") || trimmed.startsWith("/\\")) {
+        return "";
+      }
       return trimmed;
     }
 

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useLocation } from "react-router-dom";
 
 export const WHATSAPP_NUMBER = "918815806560";
 export const WHATSAPP_DISPLAY = "+91 8815806560";
@@ -11,6 +12,12 @@ export function getWhatsAppUrl(customMessage = DEFAULT_WA_MESSAGE) {
 
 export default function FloatingWhatsAppButton() {
   const [isHovered, setIsHovered] = useState(false);
+  const location = useLocation();
+
+  // Hide floating WhatsApp button on customer digital menu pages so it doesn't obstruct the restaurant menu
+  if (location.pathname.startsWith("/jatt-roll-menu") || location.pathname.startsWith("/menu/")) {
+    return null;
+  }
 
   return (
     <aside

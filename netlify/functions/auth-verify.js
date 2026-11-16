@@ -3,16 +3,28 @@
  * Route: POST or GET /.netlify/functions/auth-verify (or /api/auth-verify)
  *
  * Verifies HMAC-SHA256 signed session tokens, validates expiration,
- * and ensures user roles cannot be spoofed via client-side devtools.
+ * and ensures user roles cannot be spoofed via client-side manipulation.
  */
 
 import crypto from "crypto";
+
+// Ephemeral runtime session fallback secret
+let runtimeEphemeralSecret = null;
+function getSessionSecret() {
+  if (process.env.SESSION_SECRET && process.env.SESSION_SECRET.trim().length >= 32) {
+    return process.env.SESSION_SECRET.trim();
+  }
+  if (!runtimeEphemeralSecret) {
+    runtimeEphemeralSecret = crypto.randomBytes(64).toString("hex");
+  }
+  return runtimeEphemeralSecret;
+}
 
 function verifySessionToken(token, secret) {
   if (!token || typeof token !== "string") return { valid: false, error: "Missing token" };
 
   const parts = token.split(".");
-  if (parts.length !== 3) return { valid: false, error: "Malformed token" };
+  if (parts.length !== 3) return { valid: false, error: "Malformed token structure" };
 
   const [headerB64, payloadB64, signatureB64] = parts;
 
@@ -22,11 +34,11 @@ function verifySessionToken(token, secret) {
     .update(`${headerB64}.${payloadB64}`)
     .digest("base64url");
 
-  // Constant-time signature comparison
+  // Constant-time signature comparison using fixed SHA-256 digests
   try {
-    const sigBuf = Buffer.from(signatureB64);
-    const expBuf = Buffer.from(expectedSig);
-    if (sigBuf.length !== expBuf.length || !crypto.timingSafeEqual(sigBuf, expBuf)) {
+    const sigHash = crypto.createHash("sha256").update(signatureB64).digest();
+    const expHash = crypto.createHash("sha256").update(expectedSig).digest();
+    if (!crypto.timingSafeEqual(sigHash, expHash)) {
       return { valid: false, error: "Invalid signature" };
     }
   } catch {
@@ -38,8 +50,16 @@ function verifySessionToken(token, secret) {
     const payload = JSON.parse(Buffer.from(payloadB64, "base64url").toString("utf8"));
     const nowSec = Math.floor(Date.now() / 1000);
 
+    if (!payload || typeof payload !== "object") {
+      return { valid: false, error: "Invalid token payload" };
+    }
+
     if (payload.exp && payload.exp < nowSec) {
       return { valid: false, error: "Session token has expired", expired: true };
+    }
+
+    if (payload.role !== "admin") {
+      return { valid: false, error: "Insufficient permissions" };
     }
 
     return { valid: true, payload };
@@ -49,7 +69,15 @@ function verifySessionToken(token, secret) {
 }
 
 export const handler = async (event) => {
-  const sessionSecret = process.env.SESSION_SECRET || "dineeqr_secure_blackcardinal_hmac_secret_2026_prod";
+  const securityHeaders = {
+    "Content-Type": "application/json",
+    "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate",
+    "Pragma": "no-cache",
+    "X-Content-Type-Options": "nosniff",
+    "X-Frame-Options": "DENY"
+  };
+
+  const secret = getSessionSecret();
 
   // Extract token from Authorization header or body
   let token = null;
@@ -68,39 +96,24 @@ export const handler = async (event) => {
   if (!token) {
     return {
       statusCode: 401,
-      headers: { "Content-Type": "application/json", "Cache-Control": "no-store" },
+      headers: securityHeaders,
       body: JSON.stringify({ valid: false, error: "No authentication token provided." })
     };
   }
 
-  // Gracefully validate fallback/dev session tokens
-  if (token.startsWith("admin_session_") || token === "dev_mock_token") {
-    return {
-      statusCode: 200,
-      headers: { "Content-Type": "application/json", "Cache-Control": "no-store" },
-      body: JSON.stringify({
-        valid: true,
-        user: {
-          username: "admin",
-          role: "admin"
-        },
-        expiresAt: Date.now() + (8 * 3600 * 1000)
-      })
-    };
-  }
-
-  const result = verifySessionToken(token, sessionSecret);
+  // Cryptographically verify token
+  const result = verifySessionToken(token, secret);
   if (!result.valid) {
     return {
       statusCode: 401,
-      headers: { "Content-Type": "application/json", "Cache-Control": "no-store" },
+      headers: securityHeaders,
       body: JSON.stringify({ valid: false, error: result.error, expired: Boolean(result.expired) })
     };
   }
 
   return {
     statusCode: 200,
-    headers: { "Content-Type": "application/json", "Cache-Control": "no-store" },
+    headers: securityHeaders,
     body: JSON.stringify({
       valid: true,
       user: {

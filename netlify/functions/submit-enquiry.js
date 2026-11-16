@@ -39,11 +39,26 @@ function checkRateLimit(ip) {
   return true;
 }
 
+function cleanString(val, maxLength = 200) {
+  if (typeof val !== "string") return "";
+  return val
+    .replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F-\u009F]/g, "") // strip control characters
+    .trim()
+    .slice(0, maxLength);
+}
+
 export const handler = async (event) => {
+  const securityHeaders = {
+    "Content-Type": "application/json",
+    "Cache-Control": "no-store, no-cache, must-revalidate",
+    "X-Content-Type-Options": "nosniff",
+    "X-Frame-Options": "DENY"
+  };
+
   if (event.httpMethod !== "POST") {
     return {
       statusCode: 405,
-      headers: { "Content-Type": "application/json", Allow: "POST" },
+      headers: { ...securityHeaders, Allow: "POST" },
       body: JSON.stringify({ error: "Method Not Allowed" })
     };
   }
@@ -52,7 +67,10 @@ export const handler = async (event) => {
   if (!checkRateLimit(clientIp)) {
     return {
       statusCode: 429,
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        ...securityHeaders,
+        "Retry-After": "3600"
+      },
       body: JSON.stringify({ error: "Rate limit exceeded. Please wait a while before submitting another enquiry." })
     };
   }
@@ -63,40 +81,57 @@ export const handler = async (event) => {
   } catch {
     return {
       statusCode: 400,
-      headers: { "Content-Type": "application/json" },
+      headers: securityHeaders,
       body: JSON.stringify({ error: "Invalid JSON request." })
     };
   }
 
-  // Honeypot check: If bot fills hidden field '_hp', pretend success but drop
+  // Honeypot check: If bot fills hidden field '_hp', drop silently
   if (body._hp) {
     return {
       statusCode: 200,
-      headers: { "Content-Type": "application/json" },
+      headers: securityHeaders,
       body: JSON.stringify({ success: true, message: "Enquiry received." })
     };
   }
 
-  const name = typeof body.name === "string" ? body.name.trim().slice(0, 100) : "";
-  const phone = typeof body.phone === "string" ? body.phone.replace(/[^0-9+]/g, "").slice(0, 20) : "";
-  const email = typeof body.email === "string" ? body.email.trim().slice(0, 120) : "";
-  const restaurantName = typeof body.restaurantName === "string" ? body.restaurantName.trim().slice(0, 120) : "";
-  const message = typeof body.message === "string" ? body.message.trim().slice(0, 1000) : "";
-  const plan = typeof body.plan === "string" ? body.plan.trim().slice(0, 60) : "General Enquiry";
+  const name = cleanString(body.name, 100);
+  const rawPhone = typeof body.phone === "string" ? body.phone.replace(/[^0-9+]/g, "").slice(0, 20) : "";
+  const email = cleanString(body.email, 120);
+  const restaurantName = cleanString(body.restaurantName, 120);
+  const message = cleanString(body.message, 1000);
+  const plan = cleanString(body.plan, 60) || "General Enquiry";
 
-  if (!name || (!phone && !email)) {
+  if (!name || (!rawPhone && !email)) {
     return {
       statusCode: 400,
-      headers: { "Content-Type": "application/json" },
+      headers: securityHeaders,
       body: JSON.stringify({ error: "Name and at least one contact method (phone or email) are required." })
     };
   }
 
-  // Safe sanitized enquiry record
+  // Email format validation if provided
+  if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    return {
+      statusCode: 400,
+      headers: securityHeaders,
+      body: JSON.stringify({ error: "Invalid email format." })
+    };
+  }
+
+  // Phone validation if provided
+  if (rawPhone && !/^\+?[0-9]{7,16}$/.test(rawPhone)) {
+    return {
+      statusCode: 400,
+      headers: securityHeaders,
+      body: JSON.stringify({ error: "Invalid phone number format." })
+    };
+  }
+
   const enquiry = {
     id: `enq-${Date.now()}`,
     name,
-    phone,
+    phone: rawPhone,
     email,
     restaurantName,
     message,
@@ -107,7 +142,7 @@ export const handler = async (event) => {
 
   return {
     statusCode: 200,
-    headers: { "Content-Type": "application/json" },
+    headers: securityHeaders,
     body: JSON.stringify({
       success: true,
       message: "Enquiry submitted successfully.",

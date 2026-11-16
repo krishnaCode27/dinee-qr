@@ -18,7 +18,7 @@
   to = "/index.html"
   status = 200
 
-# Production HTTP Security Headers
+# Production HTTP Security Headers for all responses
 [[headers]]
   for = "/*"
   [headers.values]
@@ -47,4 +47,13 @@
     # - Images: Local assets + data URIs (QR SVG/Canvas) + blob URIs + HTTPS restaurant images
     # - Connect: Local APIs + Google Fonts
     # - Frame Ancestors: Disallowed (Clickjacking defense)
-    Content-Security-Policy = "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https:; connect-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; frame-ancestors 'none'; form-action 'self' https://wa.me https://api.whatsapp.com; base-uri 'self'; object-src 'none';"
+    Content-Security-Policy = "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https:; connect-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; frame-ancestors 'none'; form-action 'self' https://wa.me https://api.whatsapp.com; base-uri 'self'; object-src 'none'; upgrade-insecure-requests;"
+
+# API-specific security headers
+[[headers]]
+  for = "/api/*"
+  [headers.values]
+    Cache-Control = "no-store, no-cache, must-revalidate, proxy-revalidate"
+    Pragma = "no-cache"
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "DENY"
