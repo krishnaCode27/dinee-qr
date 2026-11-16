@@ -22,8 +22,16 @@ export const storage = {
     try {
       const data = localStorage.getItem(STORAGE_KEYS.RESTAURANTS) || localStorage.getItem(LEGACY_KEYS.RESTAURANTS);
       if (data) {
-        const parsed = JSON.parse(data);
-        if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+        let parsed = JSON.parse(data);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          // Ensure new seeded demo restaurants (like jatt-roll-menu) are seamlessly included
+          const jattSeed = INITIAL_RESTAURANTS.find(r => r.slug === "jatt-roll-menu");
+          if (jattSeed && !parsed.some(r => r.slug === "jatt-roll-menu" || r.id === jattSeed.id)) {
+            parsed = [...parsed, jattSeed];
+            localStorage.setItem(STORAGE_KEYS.RESTAURANTS, JSON.stringify(parsed));
+          }
+          return parsed;
+        }
       }
     } catch (e) {
       console.warn("Error reading restaurants from localStorage", e);

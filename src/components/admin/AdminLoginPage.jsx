@@ -51,11 +51,42 @@ export default function AdminLoginPage({ onLogin }) {
 
         <div className="login-card-divider" />
 
+        {/* Heading */}
         <div className="login-heading-area">
           <h2 className="login-title">Administrator Portal</h2>
           <p className="login-subtitle">
             Enter authorized credentials to manage restaurants, menus, QR table stands, and platform analytics.
           </p>
+        </div>
+
+        {/* Quick Demo Credential Pill */}
+        <div className="login-demo-credentials-box" style={{
+          background: "rgba(255, 77, 56, 0.08)",
+          border: "1px dashed rgba(255, 77, 56, 0.3)",
+          borderRadius: "10px",
+          padding: "10px 14px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          marginBottom: "18px",
+          gap: "8px"
+        }}>
+          <div style={{ fontSize: "0.82rem", color: "#4B5563" }}>
+            <span style={{ fontWeight: 600, color: "#111827", display: "block" }}>Admin Credentials:</span>
+            <span>Username: <strong style={{ color: "#E31B23" }}>admin</strong> | Password: <strong style={{ color: "#E31B23" }}>admin123Krishna</strong></span>
+          </div>
+          <button
+            type="button"
+            className="btn btn-outline btn-sm"
+            style={{ padding: "4px 10px", fontSize: "0.78rem", whiteSpace: "nowrap" }}
+            onClick={() => {
+              setUsername("admin");
+              setPassword("admin123Krishna");
+              setError("");
+            }}
+          >
+            Auto-Fill
+          </button>
         </div>
 
         {/* Error Banner */}

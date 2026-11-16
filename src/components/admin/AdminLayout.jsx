@@ -12,6 +12,7 @@ import AnalyticsView from "./views/AnalyticsView";
 import SubscriptionsView from "./views/SubscriptionsView";
 import EnquiriesView from "./views/EnquiriesView";
 import SettingsView from "./views/SettingsView";
+import QRGeneratorView from "./views/QRGeneratorView";
 import RestaurantModal from "./modals/RestaurantModal";
 import PrintQRModal from "./modals/PrintQRModal";
 import AdminLoginPage from "./AdminLoginPage";
@@ -116,6 +117,10 @@ export default function AdminLayout({ initialView = "overview" }) {
 
           {activeView === "qrcodes" && (
             <QRCodesView onSelectQR={handleSelectQR} />
+          )}
+
+          {activeView === "qr-generator" && (
+            <QRGeneratorView />
           )}
 
           {activeView === "templates" && (

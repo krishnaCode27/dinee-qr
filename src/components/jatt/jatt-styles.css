@@ -1,0 +1,1763 @@
+/* ==========================================================================
+   JATT ROLL MENU — Premium Street Food Brand Stylesheet
+   Theme: Bold Black, Flame Orange (#FF6B00), Golden Yellow (#FFB703), Cream (#FFF7EB)
+   ========================================================================== */
+
+.jatt-menu-shell {
+  min-height: 100vh;
+  background-color: #0A0A0C;
+  color: #FFF7EB;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  overflow-x: hidden;
+  position: relative;
+  line-height: 1.5;
+}
+
+.jatt-container {
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+@media (min-width: 768px) {
+  .jatt-container {
+    padding: 0 24px;
+  }
+}
+
+/* ==========================================================================
+   Brand Header Bar (Top Navigation)
+   ========================================================================== */
+.jatt-top-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(10, 10, 12, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 107, 0, 0.15);
+}
+
+.jatt-top-nav-inner {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.jatt-nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: #FFF7EB;
+}
+
+.jatt-nav-brand-logo {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #FF6B00 0%, #FFB703 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 19px;
+  box-shadow: 0 0 15px rgba(255, 107, 0, 0.4);
+}
+
+.jatt-nav-brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.jatt-nav-title {
+  font-family: 'Plus Jakarta Sans', 'Sora', sans-serif;
+  font-weight: 800;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+  line-height: 1.1;
+  color: #FFFFFF;
+}
+
+.jatt-nav-tagline {
+  font-size: 11px;
+  color: #FFB703;
+  letter-spacing: 0.3px;
+  font-weight: 500;
+}
+
+.jatt-nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.jatt-nav-badge-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #FFF7EB;
+  padding: 6px 12px;
+  border-radius: 9999px;
+  font-size: 12px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.jatt-nav-badge-link:hover {
+  background: rgba(255, 107, 0, 0.15);
+  border-color: #FF6B00;
+  color: #FFB703;
+}
+
+.jatt-nav-cart-trigger {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #FF6B00 0%, #E65100 100%);
+  color: #FFFFFF;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 9999px;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(255, 107, 0, 0.35);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.jatt-nav-cart-trigger:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(255, 107, 0, 0.5);
+}
+
+.jatt-nav-cart-badge {
+  background: #0A0A0C;
+  color: #FFB703;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 9999px;
+}
+
+/* ==========================================================================
+   Hero Section
+   ========================================================================== */
+.jatt-hero-section {
+  position: relative;
+  padding: 36px 0 48px;
+  overflow: hidden;
+  background: radial-gradient(circle at 50% 20%, rgba(255, 107, 0, 0.12) 0%, rgba(10, 10, 12, 0) 70%);
+}
+
+@media (min-width: 992px) {
+  .jatt-hero-section {
+    padding: 56px 0 64px;
+  }
+}
+
+.jatt-hero-ambient-glow {
+  position: absolute;
+  top: -150px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(255, 107, 0, 0.22) 0%, rgba(255, 183, 3, 0.08) 50%, rgba(0,0,0,0) 80%);
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.jatt-hero-pattern-grid {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 24px 24px;
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+/* Floating Embers */
+.jatt-floating-ember {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(2px);
+  z-index: 2;
+}
+
+.ember-1 {
+  width: 140px;
+  height: 140px;
+  top: 15%;
+  right: 8%;
+  background: radial-gradient(circle, rgba(255, 107, 0, 0.35) 0%, rgba(255, 107, 0, 0) 70%);
+}
+
+.ember-2 {
+  width: 180px;
+  height: 180px;
+  bottom: 20%;
+  left: 4%;
+  background: radial-gradient(circle, rgba(255, 183, 3, 0.25) 0%, rgba(255, 183, 3, 0) 70%);
+}
+
+.ember-3 {
+  width: 90px;
+  height: 90px;
+  top: 45%;
+  left: 35%;
+  background: radial-gradient(circle, rgba(255, 85, 0, 0.3) 0%, rgba(255, 85, 0, 0) 70%);
+}
+
+.jatt-hero-grid {
+  position: relative;
+  z-index: 5;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+  align-items: center;
+}
+
+@media (min-width: 992px) {
+  .jatt-hero-grid {
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 48px;
+  }
+}
+
+.jatt-hero-text-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.jatt-hero-top-badges {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.jatt-hero-pill-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 107, 0, 0.12);
+  border: 1px solid rgba(255, 107, 0, 0.3);
+  padding: 4px 12px;
+  border-radius: 9999px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  color: #FFB703;
+  text-transform: uppercase;
+}
+
+.jatt-hero-rating-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 4px 10px;
+  border-radius: 9999px;
+  font-size: 12px;
+  color: #FFF7EB;
+}
+
+.jatt-hero-rating-badge strong {
+  color: #FFB703;
+}
+
+.jatt-hero-rating-badge small {
+  color: rgba(255, 247, 235, 0.6);
+}
+
+.jatt-hero-main-title {
+  font-family: 'Plus Jakarta Sans', 'Sora', sans-serif;
+  font-size: 2.75rem;
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -1px;
+  margin-bottom: 12px;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 768px) {
+  .jatt-hero-main-title {
+    font-size: 3.75rem;
+  }
+}
+
+.jatt-title-highlight {
+  background: linear-gradient(135deg, #FFFFFF 0%, #FFF7EB 40%, #FFB703 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 4px 30px rgba(255, 107, 0, 0.25);
+}
+
+.jatt-title-sub {
+  color: #FF6B00;
+  letter-spacing: 2px;
+  font-size: 0.72em;
+  font-weight: 800;
+  text-shadow: 0 0 20px rgba(255, 107, 0, 0.5);
+}
+
+.jatt-hero-categories-subtitle {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #FFB703;
+  margin-bottom: 8px;
+  letter-spacing: 0.3px;
+}
+
+.jatt-bullet {
+  color: #FF6B00;
+  margin: 0 4px;
+}
+
+.jatt-hero-tagline {
+  font-size: 1.15rem;
+  font-weight: 400;
+  color: rgba(255, 247, 235, 0.85);
+  margin-bottom: 20px;
+  line-height: 1.4;
+}
+
+/* Veg / Non-Veg Indicator Chips */
+.jatt-diet-indicators-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.jatt-diet-indicator-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 12px;
+  font-weight: 600;
+  color: #FFF7EB;
+}
+
+.jatt-diet-indicator-chip.is-veg {
+  border-color: rgba(16, 185, 129, 0.3);
+  background: rgba(16, 185, 129, 0.08);
+}
+
+.jatt-diet-indicator-chip.is-egg {
+  border-color: rgba(245, 158, 11, 0.3);
+  background: rgba(245, 158, 11, 0.08);
+}
+
+/* Dietary Dots */
+.jatt-diet-box {
+  width: 17px;
+  height: 17px;
+  border: 1.5px solid;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #0A0A0C;
+  flex-shrink: 0;
+}
+
+.jatt-diet-box.is-veg {
+  border-color: #10B981;
+}
+
+.jatt-diet-box.is-veg .jatt-diet-symbol {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: #10B981;
+}
+
+.jatt-diet-box.is-egg {
+  border-color: #F59E0B;
+}
+
+.jatt-diet-box.is-egg .jatt-diet-symbol {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: #F59E0B;
+}
+
+.jatt-diet-box.is-nonveg {
+  border-color: #EF4444;
+}
+
+.jatt-diet-box.is-nonveg .jatt-diet-symbol {
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-bottom: 7px solid #EF4444;
+}
+
+/* Meta Chips */
+.jatt-hero-meta-chips {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 26px;
+  font-size: 13px;
+  color: rgba(255, 247, 235, 0.7);
+}
+
+.jatt-meta-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.jatt-meta-icon {
+  color: #FFB703;
+}
+
+/* Action Buttons */
+.jatt-hero-actions-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.jatt-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 12px 22px;
+  border-radius: 12px;
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.jatt-btn-primary {
+  background: linear-gradient(135deg, #FF6B00 0%, #FF5500 100%);
+  color: #FFFFFF;
+  box-shadow: 0 6px 20px rgba(255, 107, 0, 0.35);
+}
+
+.jatt-btn-primary:hover {
+  box-shadow: 0 8px 25px rgba(255, 107, 0, 0.55);
+}
+
+.jatt-btn-outline {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #FFF7EB;
+}
+
+.jatt-btn-outline:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Right Visual Montage Frame */
+.jatt-hero-image-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3.2;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), 0 0 40px rgba(255, 107, 0, 0.2);
+  border: 1px solid rgba(255, 107, 0, 0.25);
+  background: #14161F;
+}
+
+.jatt-hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.jatt-hero-image-frame:hover .jatt-hero-img {
+  transform: scale(1.03);
+}
+
+.jatt-hero-image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(10, 10, 12, 0.85) 0%, rgba(10, 10, 12, 0.15) 50%, rgba(10, 10, 12, 0.4) 100%);
+}
+
+.jatt-floating-card {
+  position: absolute;
+  background: rgba(20, 22, 31, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 107, 0, 0.3);
+  padding: 8px 14px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  z-index: 10;
+}
+
+.jatt-float-left {
+  top: 18px;
+  left: 18px;
+}
+
+.jatt-float-right {
+  bottom: 50px;
+  right: 18px;
+}
+
+.jatt-float-icon {
+  font-size: 20px;
+}
+
+.jatt-floating-card strong {
+  display: block;
+  font-size: 13px;
+  color: #FFFFFF;
+}
+
+.jatt-floating-card p {
+  font-size: 11px;
+  color: #FFB703;
+  margin: 0;
+}
+
+.jatt-hero-frame-footer {
+  position: absolute;
+  bottom: 12px;
+  left: 14px;
+  right: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  z-index: 10;
+}
+
+.jatt-badge-pill {
+  background: rgba(10, 10, 12, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 4px 10px;
+  border-radius: 9999px;
+  font-size: 11px;
+  font-weight: 500;
+  color: #FFF7EB;
+}
+
+/* Scroll Down Prompt */
+.jatt-scroll-down-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 32px;
+}
+
+.jatt-scroll-prompt-btn {
+  background: none;
+  border: none;
+  color: rgba(255, 247, 235, 0.6);
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.jatt-scroll-prompt-btn:hover {
+  color: #FFB703;
+}
+
+.jatt-bounce-icon {
+  animation: jattBounce 2s infinite;
+}
+
+@keyframes jattBounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(5px);
+  }
+  60% {
+    transform: translateY(2px);
+  }
+}
+
+/* ==========================================================================
+   Sticky Filter Bar (Categories + Search + Diet Filter)
+   ========================================================================== */
+.jatt-sticky-filter-wrapper {
+  position: sticky;
+  top: 64px;
+  z-index: 80;
+  background: rgba(10, 10, 12, 0.94);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(255, 107, 0, 0.18);
+  padding: 12px 0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.jatt-filter-top-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+@media (min-width: 640px) {
+  .jatt-filter-top-bar {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.jatt-search-box {
+  position: relative;
+  flex: 1;
+  max-width: 480px;
+}
+
+.jatt-search-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(255, 247, 235, 0.45);
+  pointer-events: none;
+}
+
+.jatt-search-box input {
+  width: 100%;
+  background: #151720;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #FFF7EB;
+  font-family: inherit;
+  font-size: 13.5px;
+  padding: 9px 36px 9px 38px;
+  border-radius: 10px;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.jatt-search-box input:focus {
+  border-color: #FF6B00;
+  box-shadow: 0 0 0 3px rgba(255, 107, 0, 0.2);
+  background: #1A1D28;
+}
+
+.jatt-search-box input::placeholder {
+  color: rgba(255, 247, 235, 0.4);
+}
+
+.jatt-search-clear-btn {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: rgba(255, 247, 235, 0.6);
+  cursor: pointer;
+  padding: 4px;
+}
+
+/* Dietary Toggle Pills */
+.jatt-diet-toggle-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.jatt-diet-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #151720;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: rgba(255, 247, 235, 0.7);
+  padding: 7px 12px;
+  border-radius: 9999px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.jatt-diet-pill.is-active {
+  background: rgba(255, 107, 0, 0.18);
+  border-color: #FF6B00;
+  color: #FFF7EB;
+}
+
+.jatt-veg-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #10B981;
+}
+
+.jatt-egg-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #F59E0B;
+}
+
+/* Horizontal Category Tabs Track */
+.jatt-category-tabs-track {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding: 2px 0;
+  -webkit-overflow-scrolling: touch;
+}
+
+.jatt-category-tabs-track::-webkit-scrollbar {
+  display: none;
+}
+
+.jatt-cat-tab {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: none;
+  color: rgba(255, 247, 235, 0.7);
+  padding: 8px 14px;
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 0.2s ease;
+}
+
+.jatt-cat-tab:hover {
+  color: #FFF7EB;
+}
+
+.jatt-cat-tab.is-active {
+  color: #FFFFFF;
+}
+
+.jatt-cat-count {
+  background: rgba(255, 255, 255, 0.08);
+  color: #FFB703;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: 9999px;
+}
+
+.jatt-cat-tab.is-active .jatt-cat-count {
+  background: #FF6B00;
+  color: #FFFFFF;
+}
+
+.jatt-cat-active-indicator {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 107, 0, 0.18);
+  border: 1px solid #FF6B00;
+  border-radius: 10px;
+  z-index: -1;
+}
+
+/* ==========================================================================
+   Product Menu Section & Responsive Grid
+   ========================================================================== */
+.jatt-menu-section {
+  padding: 32px 0 64px;
+}
+
+.jatt-section-header {
+  margin-bottom: 24px;
+}
+
+.jatt-section-title {
+  font-family: 'Plus Jakarta Sans', 'Sora', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.jatt-section-count {
+  font-size: 12px;
+  font-weight: 600;
+  color: #FFB703;
+  background: rgba(255, 183, 3, 0.12);
+  border: 1px solid rgba(255, 183, 3, 0.25);
+  padding: 2px 8px;
+  border-radius: 9999px;
+}
+
+.jatt-dishes-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+/* 2 columns on small screens / mobile where space allows */
+@media (min-width: 520px) {
+  .jatt-dishes-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+  }
+}
+
+/* 3 columns on tablet / desktop */
+@media (min-width: 900px) {
+  .jatt-dishes-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+  }
+}
+
+/* 4 columns on large desktop */
+@media (min-width: 1200px) {
+  .jatt-dishes-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+}
+
+/* ==========================================================================
+   Product Card Component (.jatt-menu-card)
+   ========================================================================== */
+.jatt-menu-card {
+  background: #14161F;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+}
+
+.jatt-menu-card:hover {
+  border-color: rgba(255, 107, 0, 0.35);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 107, 0, 0.12);
+}
+
+.jatt-card-media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10.5;
+  background: #1D202C;
+  overflow: hidden;
+}
+
+.jatt-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease, opacity 0.3s ease;
+}
+
+.jatt-card-img.is-loading {
+  opacity: 0.5;
+}
+
+.jatt-card-img.is-loaded {
+  opacity: 1;
+}
+
+.jatt-menu-card:hover .jatt-card-img {
+  transform: scale(1.06);
+}
+
+.jatt-card-media-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(20, 22, 31, 0.85) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.jatt-diet-badge-pos {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 2;
+}
+
+.jatt-item-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: linear-gradient(135deg, #FF6B00 0%, #E65100 100%);
+  color: #FFFFFF;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 6px;
+  letter-spacing: 0.3px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  z-index: 2;
+}
+
+.jatt-spice-tag {
+  position: absolute;
+  bottom: 8px;
+  left: 10px;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  background: rgba(10, 10, 12, 0.7);
+  padding: 2px 6px;
+  border-radius: 4px;
+  z-index: 2;
+}
+
+.jatt-chili-icon {
+  color: #FF5500;
+}
+
+/* Card Body */
+.jatt-card-body {
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.jatt-card-top-info {
+  flex: 1;
+}
+
+.jatt-card-category {
+  font-size: 10.5px;
+  font-weight: 700;
+  color: #FFB703;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+  display: block;
+}
+
+.jatt-card-title {
+  font-family: 'Plus Jakarta Sans', 'Sora', sans-serif;
+  font-size: 15.5px;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin-bottom: 6px;
+  line-height: 1.25;
+}
+
+.jatt-card-desc {
+  font-size: 12px;
+  color: rgba(255, 247, 235, 0.65);
+  line-height: 1.45;
+  margin-bottom: 12px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Size Selector (Regular vs Loaded) */
+.jatt-size-selector {
+  background: #0E1017;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 10px;
+  padding: 7px 8px;
+  margin-bottom: 12px;
+}
+
+.jatt-size-label {
+  font-size: 10px;
+  font-weight: 600;
+  color: rgba(255, 247, 235, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.jatt-size-toggle-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+}
+
+.jatt-size-btn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: rgba(255, 247, 235, 0.7);
+  padding: 5px 6px;
+  border-radius: 7px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: inherit;
+  transition: all 0.15s ease;
+}
+
+.jatt-size-btn span {
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.jatt-size-btn small {
+  font-size: 10.5px;
+  color: #FFB703;
+  font-weight: 600;
+}
+
+.jatt-size-btn.is-active {
+  background: rgba(255, 107, 0, 0.2);
+  border-color: #FF6B00;
+  color: #FFFFFF;
+}
+
+.jatt-loaded-star {
+  color: #FFB703;
+}
+
+/* Card Footer: Price & Add Button */
+.jatt-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.jatt-price-block {
+  display: flex;
+  align-items: baseline;
+  gap: 2px;
+}
+
+.jatt-currency {
+  font-size: 13px;
+  font-weight: 700;
+  color: #FFB703;
+}
+
+.jatt-amount {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 18px;
+  font-weight: 800;
+  color: #FFFFFF;
+}
+
+.jatt-size-indicator {
+  font-size: 10px;
+  color: rgba(255, 247, 235, 0.5);
+  margin-left: 3px;
+  text-transform: capitalize;
+}
+
+/* Add Button & Quantity Controller */
+.jatt-add-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: linear-gradient(135deg, #FF6B00 0%, #FF5500 100%);
+  color: #FFFFFF;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 0.4px;
+  box-shadow: 0 3px 10px rgba(255, 107, 0, 0.3);
+  transition: all 0.15s ease;
+}
+
+.jatt-add-btn:hover {
+  box-shadow: 0 4px 14px rgba(255, 107, 0, 0.5);
+}
+
+.jatt-qty-controller {
+  display: inline-flex;
+  align-items: center;
+  background: #0E1017;
+  border: 1px solid #FF6B00;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.jatt-qty-btn {
+  background: none;
+  border: none;
+  color: #FF6B00;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.jatt-qty-btn:hover {
+  background: rgba(255, 107, 0, 0.15);
+}
+
+.jatt-qty-display {
+  width: 22px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 800;
+  color: #FFFFFF;
+}
+
+/* Empty State */
+.jatt-empty-products {
+  text-align: center;
+  padding: 48px 16px;
+  background: #14161F;
+  border-radius: 16px;
+  border: 1px dashed rgba(255, 255, 255, 0.12);
+}
+
+.jatt-empty-products h3 {
+  font-size: 1.2rem;
+  color: #FFFFFF;
+  margin-bottom: 6px;
+}
+
+.jatt-empty-products p {
+  color: rgba(255, 247, 235, 0.6);
+  font-size: 13px;
+  margin-bottom: 16px;
+}
+
+/* ==========================================================================
+   Floating Bottom Cart Bar
+   ========================================================================== */
+.jatt-floating-cart-bar {
+  position: fixed;
+  bottom: 16px;
+  left: 16px;
+  right: 16px;
+  z-index: 95;
+  max-width: 540px;
+  margin: 0 auto;
+}
+
+.jatt-floating-cart-inner {
+  background: linear-gradient(135deg, #FF6B00 0%, #E65100 100%);
+  border-radius: 16px;
+  padding: 12px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 30px rgba(255, 107, 0, 0.4);
+  cursor: pointer;
+}
+
+.jatt-floating-cart-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.jatt-cart-bag-icon {
+  position: relative;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+}
+
+.jatt-cart-counter-bubble {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  background: #FFB703;
+  color: #0A0A0C;
+  font-size: 10px;
+  font-weight: 800;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+.jatt-floating-cart-totals {
+  display: flex;
+  flex-direction: column;
+}
+
+.jatt-floating-price {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 17px;
+  font-weight: 800;
+  color: #FFFFFF;
+  line-height: 1.1;
+}
+
+.jatt-floating-items-count {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.jatt-view-order-btn {
+  background: rgba(0, 0, 0, 0.22);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #FFFFFF;
+  padding: 8px 14px;
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   Cart Drawer Component (.jatt-cart-drawer-panel)
+   ========================================================================== */
+.jatt-cart-drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 1000;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.jatt-cart-drawer-panel {
+  width: 100%;
+  max-width: 440px;
+  height: 100%;
+  background: #11131A;
+  border-left: 1px solid rgba(255, 107, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: -10px 0 40px rgba(0, 0, 0, 0.8);
+}
+
+.jatt-cart-header {
+  padding: 16px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #161922;
+}
+
+.jatt-cart-header-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.jatt-cart-icon-wrap {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: rgba(255, 107, 0, 0.15);
+  color: #FF6B00;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.jatt-cart-header-title h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: #FFFFFF;
+  line-height: 1.1;
+}
+
+.jatt-cart-header-title p {
+  font-size: 11px;
+  color: rgba(255, 247, 235, 0.6);
+}
+
+.jatt-cart-close-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 247, 235, 0.8);
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.jatt-cart-close-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #FFFFFF;
+}
+
+/* Cart Body */
+.jatt-cart-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px 20px;
+}
+
+/* Empty View */
+.jatt-cart-empty-view {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 32px 16px;
+}
+
+.jatt-empty-icon-circle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: rgba(255, 107, 0, 0.1);
+  border: 1px dashed rgba(255, 107, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FF6B00;
+  margin-bottom: 16px;
+}
+
+.jatt-cart-empty-view h4 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin-bottom: 8px;
+}
+
+.jatt-cart-empty-view p {
+  font-size: 13px;
+  color: rgba(255, 247, 235, 0.6);
+  max-width: 260px;
+  margin-bottom: 20px;
+}
+
+.jatt-empty-browse-btn {
+  padding: 10px 20px;
+}
+
+/* Order Type Switcher */
+.jatt-order-type-tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 16px;
+  background: #0B0D14;
+  padding: 4px;
+  border-radius: 10px;
+}
+
+.jatt-type-tab {
+  background: transparent;
+  border: none;
+  color: rgba(255, 247, 235, 0.7);
+  padding: 8px;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.jatt-type-tab.is-active {
+  background: #1D202C;
+  color: #FFB703;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* Items List */
+.jatt-cart-items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.jatt-cart-row {
+  background: #171A24;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.jatt-cart-row-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.jatt-cart-row-title-line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.jatt-diet-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.jatt-diet-dot.is-veg {
+  background: #10B981;
+}
+
+.jatt-diet-dot.is-egg {
+  background: #F59E0B;
+}
+
+.jatt-diet-dot.is-nonveg {
+  background: #EF4444;
+}
+
+.jatt-cart-row-title-line strong {
+  font-size: 14px;
+  color: #FFFFFF;
+}
+
+.jatt-cart-row-sub {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+}
+
+.jatt-cart-size-tag {
+  background: rgba(255, 107, 0, 0.15);
+  color: #FFB703;
+  font-size: 10.5px;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: 4px;
+}
+
+.jatt-cart-item-rate {
+  color: rgba(255, 247, 235, 0.6);
+}
+
+.jatt-cart-row-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.jatt-cart-qty-box {
+  display: inline-flex;
+  align-items: center;
+  background: #0B0D14;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.jatt-cart-qty-box button {
+  background: none;
+  border: none;
+  color: rgba(255, 247, 235, 0.8);
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.jatt-cart-qty-box button:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.jatt-cart-qty-box span {
+  width: 22px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: #FFFFFF;
+}
+
+.jatt-cart-row-total {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 14.5px;
+  font-weight: 800;
+  color: #FFB703;
+}
+
+.jatt-cart-remove-item-btn {
+  background: none;
+  border: none;
+  color: rgba(255, 247, 235, 0.4);
+  cursor: pointer;
+  padding: 4px;
+  transition: color 0.15s ease;
+}
+
+.jatt-cart-remove-item-btn:hover {
+  color: #EF4444;
+}
+
+/* Order Inputs */
+.jatt-cart-details-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 8px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.jatt-form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.jatt-input-label span {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: rgba(255, 247, 235, 0.7);
+  margin-bottom: 5px;
+  display: block;
+}
+
+.jatt-input-label input {
+  width: 100%;
+  background: #171A24;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #FFF7EB;
+  font-family: inherit;
+  font-size: 13px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  outline: none;
+}
+
+.jatt-input-label input:focus {
+  border-color: #FF6B00;
+  box-shadow: 0 0 0 2px rgba(255, 107, 0, 0.2);
+}
+
+/* Cart Footer */
+.jatt-cart-footer {
+  padding: 16px 20px;
+  background: #161922;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.jatt-cart-bill-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.jatt-bill-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+  color: rgba(255, 247, 235, 0.7);
+}
+
+.jatt-bill-row.is-total {
+  font-size: 16px;
+  color: #FFFFFF;
+  padding-top: 6px;
+  border-top: 1px dashed rgba(255, 255, 255, 0.15);
+}
+
+.jatt-grand-amount {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 20px;
+  color: #FFB703;
+  font-weight: 800;
+}
+
+.jatt-whatsapp-order-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #25D366 0%, #1EBE5D 100%);
+  color: #FFFFFF;
+  border: none;
+  padding: 13px 20px;
+  border-radius: 12px;
+  font-family: inherit;
+  font-size: 14.5px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(37, 211, 102, 0.35);
+  transition: all 0.2s ease;
+}
+
+.jatt-whatsapp-order-btn:hover {
+  box-shadow: 0 8px 24px rgba(37, 211, 102, 0.5);
+}
+
+.jatt-cart-footer-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.jatt-cart-clear-btn {
+  background: none;
+  border: none;
+  color: rgba(255, 247, 235, 0.5);
+  font-size: 12px;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.jatt-cart-clear-btn:hover {
+  color: #EF4444;
+}
+
+.jatt-cart-continue-btn {
+  background: none;
+  border: none;
+  color: #FFB703;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.jatt-cart-notice {
+  font-size: 10.5px;
+  color: rgba(255, 247, 235, 0.45);
+  text-align: center;
+  margin: 0;
+}
+
+/* ==========================================================================
+   Public Footer
+   ========================================================================== */
+.jatt-public-footer {
+  background: #070709;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 40px 0 32px;
+  text-align: center;
+}
+
+.jatt-footer-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.jatt-footer-brand-title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+  color: #FFFFFF;
+}
+
+.jatt-footer-brand-title span {
+  color: #FF6B00;
+}
+
+.jatt-footer-sub {
+  font-size: 13px;
+  color: rgba(255, 247, 235, 0.7);
+  max-width: 440px;
+}
+
+.jatt-footer-meta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  font-size: 12px;
+  color: rgba(255, 247, 235, 0.55);
+}
+
+.jatt-footer-powered {
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  width: 100%;
+  font-size: 11.5px;
+  color: rgba(255, 247, 235, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.jatt-footer-powered a {
+  color: #FFB703;
+  text-decoration: none;
+}
+
+/* ==========================================================================
+   Reduced Motion Accessibility
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

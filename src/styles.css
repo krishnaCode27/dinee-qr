@@ -649,6 +649,35 @@ input:focus, select:focus, textarea:focus {
   color: var(--color-coral);
 }
 
+.nav-special-demo-link {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 107, 0, 0.1);
+  border: 1px solid rgba(255, 107, 0, 0.3);
+  padding: 5px 12px;
+  border-radius: 9999px;
+  color: #FF6B00 !important;
+  font-weight: 700 !important;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.nav-special-demo-link:hover {
+  background: rgba(255, 107, 0, 0.2);
+  transform: translateY(-1px);
+}
+
+.badge-new-pill {
+  background: #FF6B00;
+  color: #FFFFFF;
+  font-size: 0.65rem;
+  font-weight: 800;
+  padding: 1px 6px;
+  border-radius: 9999px;
+  letter-spacing: 0.3px;
+}
+
 .header-actions {
   display: flex;
   align-items: center;
@@ -1920,6 +1949,50 @@ input:focus, select:focus, textarea:focus {
 .badge-coral {
   background-color: #EF4444;
   color: var(--color-white);
+}
+
+.sidebar-demo-promo-section {
+  padding: 8px 10px;
+}
+
+.sidebar-demo-banner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, rgba(255, 107, 0, 0.15) 0%, rgba(255, 183, 3, 0.1) 100%);
+  border: 1px solid rgba(255, 107, 0, 0.3);
+  padding: 8px 12px;
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.sidebar-demo-banner:hover {
+  background: linear-gradient(135deg, rgba(255, 107, 0, 0.25) 0%, rgba(255, 183, 3, 0.18) 100%);
+  border-color: #FF6B00;
+  transform: translateY(-1px);
+}
+
+.demo-banner-icon {
+  font-size: 18px;
+}
+
+.demo-banner-text {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.demo-banner-text strong {
+  font-size: 0.78rem;
+  color: #FFFFFF;
+  line-height: 1.1;
+}
+
+.demo-banner-text small {
+  font-size: 0.65rem;
+  color: #FFB703;
+  font-weight: 600;
 }
 
 .sidebar-footer-section {
@@ -5978,3 +6051,372 @@ input:focus, select:focus, textarea:focus {
 
 
 
+
+/* ==========================================================================
+   Dedicated QR Code Generator Page Styles
+   ========================================================================== */
+
+.qr-generator-view {
+  padding-bottom: 48px;
+}
+
+.view-badge-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  color: var(--color-coral);
+  margin-bottom: 4px;
+}
+
+.qr-gen-layout-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  margin-top: 20px;
+}
+
+@media (min-width: 992px) {
+  .qr-gen-layout-grid {
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 32px;
+  }
+}
+
+.qr-gen-controls-card,
+.qr-gen-preview-card {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+}
+
+.card-section-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--color-border-subtle);
+  margin-bottom: 20px;
+}
+
+.card-section-head h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin: 0;
+}
+
+.card-section-head.flex-between {
+  justify-content: space-between;
+}
+
+.flex-center-gap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.live-preview-pill {
+  background: var(--color-green-subtle);
+  color: var(--color-green);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 9999px;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.qr-controls-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.form-select-control,
+.form-input-control {
+  width: 100%;
+  padding: 9px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-family: inherit;
+  font-size: 0.88rem;
+  background-color: var(--color-white);
+  color: var(--color-text-main);
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.form-select-control:focus,
+.form-input-control:focus {
+  border-color: var(--color-coral);
+  box-shadow: 0 0 0 3px rgba(227, 27, 35, 0.12);
+}
+
+.input-with-button-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.input-with-button-row .form-input-control {
+  flex: 1;
+}
+
+.field-hint {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  margin-top: 4px;
+}
+
+.form-divider {
+  height: 1px;
+  background-color: var(--color-border-subtle);
+  margin: 4px 0;
+}
+
+.form-row-2col {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+@media (min-width: 500px) {
+  .form-row-2col {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.color-palette-preset-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.color-preset-circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.color-preset-circle:hover {
+  transform: scale(1.12);
+}
+
+.color-preset-circle.is-active {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px var(--color-white), 0 0 0 4px var(--color-primary);
+}
+
+.custom-color-picker-wrap {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.custom-color-input {
+  width: 44px;
+  height: 44px;
+  border: none;
+  cursor: pointer;
+  background: transparent;
+  margin: -6px;
+}
+
+.toggles-row {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 4px;
+}
+
+@media (min-width: 540px) {
+  .toggles-row {
+    flex-direction: row;
+    gap: 20px;
+  }
+}
+
+.toggle-checkbox-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--color-text-main);
+  cursor: pointer;
+}
+
+.toggle-checkbox-label input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--color-coral);
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   Live Table Stand Preview Box
+   ========================================================================== */
+.preview-container-area {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px 12px;
+  background-color: var(--color-bg-subtle);
+  border-radius: var(--radius-md);
+  border: 1px dashed var(--color-border);
+  flex: 1;
+}
+
+.table-stand-printable-box {
+  width: 100%;
+  max-width: 360px;
+  border: 2px solid #111317;
+  border-radius: 20px;
+  padding: 28px 24px 20px;
+  text-align: center;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.stand-brand-header {
+  margin-bottom: 12px;
+  width: 100%;
+}
+
+.stand-logo-badge {
+  font-size: 32px;
+  margin-bottom: 4px;
+}
+
+.stand-restaurant-heading {
+  font-family: 'Plus Jakarta Sans', 'Sora', sans-serif;
+  font-size: 1.35rem;
+  font-weight: 900;
+  letter-spacing: -0.5px;
+  color: #111317;
+  margin-bottom: 4px;
+  line-height: 1.15;
+  text-transform: uppercase;
+}
+
+.stand-tagline-text {
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: #6B7280;
+  max-width: 260px;
+  margin: 0 auto;
+  line-height: 1.35;
+}
+
+.stand-scan-instruction {
+  margin-bottom: 14px;
+}
+
+.stand-scan-chip {
+  display: inline-block;
+  background-color: #111317;
+  color: #FFFFFF;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  padding: 5px 14px;
+  border-radius: 9999px;
+  text-transform: uppercase;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+.stand-qr-code-frame {
+  background-color: #FFFFFF;
+  padding: 14px;
+  border-radius: 14px;
+  border: 1px solid #E5E7EB;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  margin-bottom: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stand-footer-block {
+  width: 100%;
+  padding-top: 12px;
+  border-top: 1px dashed #D1D5DB;
+}
+
+.stand-bold-flavour {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: #FF6B00;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.stand-powered-credit {
+  font-size: 0.62rem;
+  color: #9CA3AF;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.preview-action-buttons-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.preview-action-buttons-row .btn {
+  flex: 1;
+  min-width: 140px;
+}
+
+/* ==========================================================================
+   Print Specific Styling for Table Stands
+   ========================================================================== */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+
+  #printable-jatt-table-stand,
+  #printable-jatt-table-stand * {
+    visibility: visible;
+  }
+
+  #printable-jatt-table-stand {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 380px !important;
+    border: 2px solid #000000 !important;
+    box-shadow: none !important;
+    padding: 36px 28px !important;
+  }
+}

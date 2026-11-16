@@ -37,18 +37,23 @@ export default function LandingFooter({ onOpenEnquiry }) {
           <h4 className="footer-col-title">Product & Demos</h4>
           <ul>
             <li>
+              <Link to="/jatt-roll-menu" style={{ color: "#FF6B00", fontWeight: 700 }}>
+                🌯 JATT ROLL MENU Demo <ArrowUpRight size={13} />
+              </Link>
+            </li>
+            <li>
               <Link to="/menu/the-spice-route">
                 The Spice Route Demo <ArrowUpRight size={13} />
               </Link>
             </li>
             <li>
-              <Link to="/menu/urban-roast">
-                Urban Roast Cafe Demo <ArrowUpRight size={13} />
+              <Link to="/admin/qr-generator">
+                QR Code Generator <ArrowUpRight size={13} />
               </Link>
             </li>
             <li>
-              <Link to="/menu/street-crave">
-                Street Crave Demo <ArrowUpRight size={13} />
+              <Link to="/menu/urban-roast">
+                Urban Roast Cafe Demo <ArrowUpRight size={13} />
               </Link>
             </li>
             <li>

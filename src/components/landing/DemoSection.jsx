@@ -220,14 +220,23 @@ export default function DemoSection() {
 
         {/* Section Primary CTA */}
         <div className="demo-bottom-cta text-center">
-          <Link
-            to="/menu/the-spice-route"
-            className="btn btn-primary btn-xl"
-          >
-            Experience Your Digital Menu <ArrowUpRight size={18} />
-          </Link>
+          <div className="demo-cta-buttons-row" style={{ display: "flex", justifyContent: "center", gap: "14px", flexWrap: "wrap", marginBottom: "12px" }}>
+            <Link
+              to="/jatt-roll-menu"
+              className="btn btn-primary btn-xl"
+              style={{ background: "linear-gradient(135deg, #FF6B00 0%, #FF5500 100%)", boxShadow: "0 8px 25px rgba(255, 107, 0, 0.4)" }}
+            >
+              🌯 Try JATT ROLL MENU Demo <ArrowUpRight size={18} />
+            </Link>
+            <Link
+              to="/menu/the-spice-route"
+              className="btn btn-outline btn-xl"
+            >
+              🍛 The Spice Route Demo <ArrowUpRight size={18} />
+            </Link>
+          </div>
           <p className="demo-sub-note">
-            Open full smartphone viewport to test order tray, dietary filters, and direct WhatsApp sharing.
+            Open full smartphone viewport to test animated product cards, size selectors, live order tray, and WhatsApp checkout.
           </p>
         </div>
       </div>

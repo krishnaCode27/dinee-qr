@@ -16,6 +16,10 @@ export default function LandingNav() {
           <a href="#benefits" onClick={() => setMobileMenuOpen(false)}>Benefits</a>
           <a href="#templates" onClick={() => setMobileMenuOpen(false)}>Templates</a>
           <a href="#demo" onClick={() => setMobileMenuOpen(false)}>Demo</a>
+          <Link to="/jatt-roll-menu" className="nav-special-demo-link" onClick={() => setMobileMenuOpen(false)}>
+            <span>🌯 JATT ROLL Demo</span>
+            <span className="badge-new-pill">NEW</span>
+          </Link>
           <a href="#pricing" onClick={() => setMobileMenuOpen(false)}>Pricing</a>
           <a href="#contact" onClick={() => setMobileMenuOpen(false)}>Contact</a>
           <div className="mobile-only-actions">

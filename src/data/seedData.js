@@ -464,6 +464,262 @@ export const INITIAL_RESTAURANTS = [
       }
     ],
     createdAt: "2026-11-08T08:15:00Z"
+  },
+  {
+    id: "rest-jatt-roll-menu",
+    name: "JATT ROLL MENU",
+    slug: "jatt-roll-menu",
+    ownerName: "Harpreet Singh",
+    email: "orders@jattrollmenu.in",
+    phone: "+91 88158 06560",
+    address: "Shop 12, Food Street, Sector 18",
+    city: "Gurugram, NCR",
+    description: "Bold Flavours. Loaded Rolls. Full Satisfaction. Modern Indian street food brand specializing in loaded kathi rolls, succulent soya chaap, peri-peri crunch fries, and thick shakes.",
+    tagline: "Bold Flavours. Loaded Rolls. Full Satisfaction.",
+    logo: "🌯",
+    logoImage: "https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?w=160&auto=format&fit=crop&q=80",
+    coverImage: "https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?w=1200&auto=format&fit=crop&q=85",
+    openingHours: "12:00 PM – 11:30 PM (Daily)",
+    category: "Street Food & Rolls",
+    templateId: "street-food",
+    status: "active",
+    googleReviewUrl: "https://search.google.com/local/writereview?placeid=ChIJ-jatt-roll-menu-demo",
+    googleReviewEnabled: true,
+    instagramUrl: "https://instagram.com/blackcardinal1",
+    instagramEnabled: true,
+    subscription: {
+      planId: "monthly-plan",
+      planName: "Monthly Pro",
+      status: "active",
+      startDate: "2026-11-15",
+      expiryDate: "2026-12-15",
+      paymentStatus: "Verified"
+    },
+    viewsCount: 3850,
+    categories: ["Signature Items", "Chaap", "Veg Rolls", "Fries", "Egg Rolls"],
+    items: [
+      {
+        id: "jatt-sig-1",
+        name: "Spicy Bhoot",
+        category: "Signature Items",
+        price: 199,
+        dietary: "veg",
+        description: "Signature ghost pepper chilli spiced roll wrapped in flaky golden paratha with crispy fillings, jalapeño mayo, and secret street spice dust.",
+        image: "https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?w=600&auto=format&fit=crop&q=80",
+        available: true,
+        featured: true
+      },
+      {
+        id: "jatt-sig-2",
+        name: "Andhra Chilly",
+        category: "Signature Items",
+        price: 199,
+        dietary: "veg",
+        description: "Fiery Guntur chili marinade tossed with fresh onion rings, crisp green chilies, curry leaf tempering, and house special mint chutney.",
+        image: "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=600&auto=format&fit=crop&q=80",
+        available: true,
+        featured: true
+      },
+      {
+        id: "jatt-sig-3",
+        name: "Lord Lemon",
+        category: "Signature Items",
+        price: 199,
+        dietary: "veg",
+        description: "Tangy lemon-pepper zesty street roll bursting with citrus glaze, crushed black peppercorns, fresh coriander, and crisp golden crunch.",
+        image: "https://images.unsplash.com/photo-1606491956689-2ea866880c84?w=600&auto=format&fit=crop&q=80",
+        available: true,
+        featured: false
+      },
+      {
+        id: "jatt-sig-4",
+        name: "Korean Kaboom",
+        category: "Signature Items",
+        price: 199,
+        dietary: "veg",
+        description: "Sweet-spicy Korean gochujang glazed fusion crunch roll with toasted sesame seeds, shredded cabbage slaw, and spicy garlic aioli.",
+        image: "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=600&auto=format&fit=crop&q=80",
+        available: true,
+        featured: true
+      },
+      {
+        id: "jatt-chaap-1",
+        name: "Kadak Singh",
+        category: "Chaap",
+        price: 129,
+        dietary: "veg",
+        description: "Crispy tandoori soya chaap tossed in robust Punjabi spices, chatpata masala, sliced red onions, and tangy mint chutney. Regular ₹129 / Loaded ₹179",
+        image: "https://images.unsplash.com/photo-1599488615731-7e5c2823ff28?w=600&auto=format&fit=crop&q=80",
+        available: true,
+        featured: true
+      },
+      {
+        id: "jatt-chaap-2",
+        name: "V. Manchurian",
+        category: "Chaap",
+        price: 139,
+        dietary: "veg",
+        description: "Soya chaap coated in savory Indo-Chinese Manchurian glaze, minced ginger, toasted garlic bits, and fresh spring onion greens. Regular ₹139 / Loaded ₹189",
+        image: "https://images.unsplash.com/photo-1541832676-9b763b0239ab?w=600&auto=format&fit=crop&q=80",
+        available: true,
+        featured: false
+      },
+      {
+        id: "jatt-chaap-3",
+        name: "M. Mushroom",
+        category: "Chaap",
+        price: 149,
+        dietary: "veg",
+        description: "Juicy marinated button mushrooms and tender soya chaap sautéed with cracked black pepper, street seasonings, and creamy dressing. Regular ₹149 / Loaded ₹199",
+        image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&auto=format&fit=crop&q=80",
+        available: true,
+        featured: false
+      },
+      {
+        id: "jatt-chaap-4",
+        name: "Mughlai Chaap",
+        category: "Chaap",
+        price: 159,
+        dietary: "veg",
+        description: "Rich Mughlai aromatic gravy spiced chaap roll infused with cardamom, creamy cashew paste, and royal whole spices. Regular ₹159 / Loaded ₹209",
+        image: "https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=600&auto=format&fit=crop&q=80",
+        available: true,
+        featured: true
+      },
+      {
+        id: "jatt-chaap-5",
+        name: "Makhani Chaap",
+        category: "Chaap",
+        price: 169,
+        dietary: "veg",
+        description: "Charcoal-grilled soya chaap drenched in velvety butter-rich tomato makhani sauce, fresh cream, and fragrant kasuri methi. Regular ₹169 / Loaded ₹219",
+        image: "https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=600&auto=format&fit=crop&q=80",
+        available: true,
+        featured: true
+      },
+      {
+        id: "jatt-veg-1",
+        name: "Happy Singh",
+        category: "Veg Rolls",
+        price: 79,
+        dietary: "veg",
+        description: "The all-time favourite classic street-style mixed vegetable roll loaded with crunchy cabbage, capsicum, and zesty sauces.",
+        image: "https://images.unsplash.com/photo-1509722747041-616f39b57569?w=600&auto=format&fit=crop&q=80",
+        available: true,
+        featured: false
+      },
+      {
+        id: "jatt-veg-2",
+        name: "JR Lucky",
+        category: "Veg Rolls",
+        price: 89,
+        dietary: "veg",
+        description: "Special chef roll packed with seasoned aloo patty, fresh crisp onions, crunchy greens, and our signature roll cream.",
+        image: "https://images.unsplash.com/photo-1628294895950-9805252327bc?w=600&auto=format&fit=crop&q=80",
+        available: true,
+        featured: true
+      },
+      {
+        id: "jatt-veg-3",
+        name: "Bhutta Singh",
+        category: "Veg Rolls",
+        price: 99,
+        dietary: "veg",
+        description: "Golden sweet corn and sautéed spiced veggies roll wrapped in a warm flaky paratha with chipotle mayonnaise drizzle.",
+        image: "https://images.unsplash.com/photo-1551782450-a2132b4ba21d?w=600&auto=format&fit=crop&q=80",
+        available: true,
+        featured: false
+      },
+      {
+        id: "jatt-veg-4",
+        name: "Shammi Kebab",
+        category: "Veg Rolls",
+        price: 119,
+        dietary: "veg",
+        description: "Melt-in-mouth spiced vegetarian shammi kebab rolls with sliced red onions, chaat masala, and cooling mint-curd yogurt dip.",
+        image: "https://images.unsplash.com/photo-1529042410759-befb1204b468?w=600&auto=format&fit=crop&q=80",
+        available: true,
+        featured: true
+      },
+      {
+        id: "jatt-fries-1",
+        name: "Salted Fries",
+        category: "Fries",
+        price: 89,
+        dietary: "veg",
+        description: "Golden crisp French fries fried fresh to order and delicately seasoned with pure fine sea salt.",
+        image: "https://images.unsplash.com/photo-1576107232684-1279f3908594?w=600&auto=format&fit=crop&q=80",
+        available: true,
+        featured: false
+      },
+      {
+        id: "jatt-fries-2",
+        name: "Peri Peri",
+        category: "Fries",
+        price: 99,
+        dietary: "veg",
+        description: "Crispy hot French fries vigorously shaken with tangy, fiery African peri-peri chili dust.",
+        image: "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=600&auto=format&fit=crop&q=80",
+        available: true,
+        featured: true
+      },
+      {
+        id: "jatt-fries-3",
+        name: "Loaded Nachos",
+        category: "Fries",
+        price: 149,
+        dietary: "veg",
+        description: "Crunchy corn tortilla chips loaded with hot liquid cheese sauce, tomato salsa, sliced pickled jalapeños, and spiced mayonnaise.",
+        image: "https://images.unsplash.com/photo-1513456852971-30c0b8199d4d?w=600&auto=format&fit=crop&q=80",
+        available: true,
+        featured: true
+      },
+      {
+        id: "jatt-egg-1",
+        name: "Classic Egg",
+        category: "Egg Rolls",
+        price: 79,
+        dietary: "egg",
+        description: "Beaten farm-fresh egg fried directly over golden layered paratha, rolled with crunchy spiced onions, green chili, and tangy sauces.",
+        image: "https://images.unsplash.com/photo-1525351484163-7529414344d8?w=600&auto=format&fit=crop&q=80",
+        available: true,
+        featured: false
+      },
+      {
+        id: "jatt-egg-2",
+        name: "Makhani Egg",
+        category: "Egg Rolls",
+        price: 89,
+        dietary: "egg",
+        description: "Golden egg roll infused with rich buttery tomato makhani sauce, roasted street spices, and crisp pickled onions.",
+        image: "https://images.unsplash.com/photo-1567184109411-b28f27034344?w=600&auto=format&fit=crop&q=80",
+        available: true,
+        featured: true
+      },
+      {
+        id: "jatt-egg-3",
+        name: "Loaded Egg",
+        category: "Egg Rolls",
+        price: 99,
+        dietary: "egg",
+        description: "Double egg roll loaded with extra toppings, melted cheese blend, sautéed crunchy veggies, and roasted garlic mayonnaise.",
+        image: "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=600&auto=format&fit=crop&q=80",
+        available: true,
+        featured: true
+      },
+      {
+        id: "jatt-egg-4",
+        name: "Korean Egg",
+        category: "Egg Rolls",
+        price: 119,
+        dietary: "egg",
+        description: "Crispy egg roll tossed with savory Korean gochujang glaze, spicy kimchi mayo, toasted white sesame seeds, and fresh scallions.",
+        image: "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=600&auto=format&fit=crop&q=80",
+        available: true,
+        featured: true
+      }
+    ],
+    createdAt: "2026-11-15T10:00:00Z"
   }
 ];
 

@@ -49,6 +49,13 @@ export default function AdminSidebar({
       badge: stats.totalItems > 0 ? stats.totalItems : null
     },
     { id: "qrcodes", label: "QR Codes", icon: <QrCode size={18} /> },
+    {
+      id: "qr-generator",
+      label: "QR Generator",
+      icon: <QrCode size={18} />,
+      badge: "Studio",
+      badgeColor: "coral"
+    },
     { id: "templates", label: "Templates", icon: <Palette size={18} /> },
     { id: "analytics", label: "Analytics", icon: <BarChart2 size={18} /> },
     {
@@ -135,6 +142,24 @@ export default function AdminSidebar({
               );
             })}
           </nav>
+        </div>
+
+        <div className="sidebar-demo-promo-section">
+          <Link
+            to="/jatt-roll-menu"
+            target="_blank"
+            rel="noreferrer"
+            className="sidebar-demo-banner"
+            title="Open JATT ROLL MENU Demo"
+          >
+            <span className="demo-banner-icon">🌯</span>
+            {!isCollapsed && (
+              <div className="demo-banner-text">
+                <strong>JATT ROLL MENU</strong>
+                <small>Live QR Demo ↗</small>
+              </div>
+            )}
+          </Link>
         </div>
 
         <div className="sidebar-footer-section">
