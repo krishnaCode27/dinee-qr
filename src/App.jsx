@@ -1,14 +1,15 @@
 import React from "react";
-import { Routes, Route, Link, Navigate } from "react-router-dom";
+import { Routes, Route, Link } from "react-router-dom";
 import { AppProvider } from "./context/AppContext";
 import ToastContainer from "./components/common/ToastContainer";
 import LandingPage from "./components/landing/LandingPage";
 import AdminLayout from "./components/admin/AdminLayout";
 import CustomerMenuPage from "./components/menu/CustomerMenuPage";
 import JattRollMenuPage from "./components/jatt/JattRollMenuPage";
+import AuroraExclusivePage from "./components/aurora/AuroraExclusivePage";
 import BrandLogo from "./components/common/BrandLogo";
 import FloatingWhatsAppButton from "./components/common/FloatingWhatsAppButton";
-import { ArrowLeft, Home } from "lucide-react";
+import { Home, Sparkles } from "lucide-react";
 
 function NotFoundPage() {
   return (
@@ -16,19 +17,19 @@ function NotFoundPage() {
       <div className="notfound-card">
         <BrandLogo size="lg" withTagline={true} />
         <h2>404 — Page Not Found</h2>
-        <p>The page or digital menu URL you are looking for does not exist or has been relocated.</p>
+        <p>The page you are looking for does not exist or has been relocated.</p>
         <div className="notfound-actions">
           <Link to="/" className="btn btn-primary">
-            <Home size={16} /> Return to DineEQR Home
+            <Sparkles size={16} /> Aurora Exclusive
           </Link>
-          <Link to="/admin" className="btn btn-outline">
-            Go to Admin Dashboard
-          </Link>
-          <Link to="/menu/the-spice-route" className="btn btn-outline">
-            The Spice Route Demo
+          <Link to="/dineqr" className="btn btn-outline">
+            DineEQR Platform
           </Link>
           <Link to="/jatt-roll-menu" className="btn btn-outline">
             JATT ROLL MENU Demo
+          </Link>
+          <Link to="/admin" className="btn btn-outline">
+            Admin Dashboard
           </Link>
         </div>
       </div>
@@ -40,10 +41,15 @@ export default function App() {
   return (
     <AppProvider>
       <Routes>
-        {/* Landing Page */}
-        <Route path="/" element={<LandingPage />} />
+        {/* Aurora Exclusive Single-Page Luxury Fashion Website */}
+        <Route path="/" element={<AuroraExclusivePage />} />
+        <Route path="/aurora" element={<AuroraExclusivePage />} />
+        <Route path="/aurora-exclusive" element={<AuroraExclusivePage />} />
 
-        {/* Dedicated JATT ROLL MENU Demo (Public contactless menu) */}
+        {/* DineEQR Platform Home */}
+        <Route path="/dineqr" element={<LandingPage />} />
+
+        {/* Dedicated JATT ROLL MENU Demo */}
         <Route path="/jatt-roll-menu" element={<JattRollMenuPage />} />
 
         {/* Admin Dashboard & Management Views */}
@@ -71,7 +77,7 @@ export default function App() {
       {/* Global Toast Stack */}
       <ToastContainer />
 
-      {/* Floating WhatsApp Lead Generation Button */}
+      {/* Floating WhatsApp Button for DineEQR routes */}
       <FloatingWhatsAppButton />
     </AppProvider>
   );

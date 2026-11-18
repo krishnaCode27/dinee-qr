@@ -14,8 +14,13 @@ export default function FloatingWhatsAppButton() {
   const [isHovered, setIsHovered] = useState(false);
   const location = useLocation();
 
-  // Hide floating WhatsApp button on customer digital menu pages so it doesn't obstruct the restaurant menu
-  if (location.pathname.startsWith("/jatt-roll-menu") || location.pathname.startsWith("/menu/")) {
+  // Hide floating WhatsApp button on Aurora Exclusive and customer digital menu pages
+  if (
+    location.pathname === "/" ||
+    location.pathname.startsWith("/aurora") ||
+    location.pathname.startsWith("/jatt-roll-menu") ||
+    location.pathname.startsWith("/menu/")
+  ) {
     return null;
   }
 
